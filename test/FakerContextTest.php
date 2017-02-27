@@ -109,7 +109,14 @@ class FakerContextTest extends \PHPUnit_Framework_TestCase
             ->method('getFaker')
             ->will($this->returnValue($faker));
 
-        $fakerContext->generateTestData($fakerProperty, $fakerParameters);
+        try {
+            $fakerContext->generateTestData($fakerProperty, $fakerParameters);
+        } catch (\PHPUnit_Framework_Error_Notice $e) {
+            if ($e->getMessage() === 'Array to string conversion') {
+                throw new \InvalidArgumentException();
+            }
+            throw $e;
+        }
     }
 
     public function providerTestTransformValueGenerate()
@@ -191,7 +198,7 @@ class FakerContextTest extends \PHPUnit_Framework_TestCase
 
     private function getSeededFaker()
     {
-        if (!$this->faker) {
+        if (empty($this->faker)) {
             $this->faker = \Faker\Factory::create();
         }
 

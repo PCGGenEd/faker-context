@@ -3,11 +3,11 @@
 
 namespace FakerContext;
 
-use Behat\Behat\Context\BehatContext,
+use Behat\Behat\Context\Context,
     Behat\Gherkin\Node\TableNode,
     Faker\Factory as FakerFactory;
 
-class FakerContext extends BehatContext
+class FakerContext implements Context
 {
     const GENERATE_TEST_DATA_REGEX = '~\[([$a-zA-Z0-9]+)=([a-zA-Z]+)(\(([,\'" 0-9a-zA-Z:-]+)\))?\]~';
     const GET_TEST_DATA_REGEX = '~\[([$a-zA-Z0-9]+)\]~';

@@ -14,7 +14,7 @@ class FakerContextTest extends \PHPUnit_Framework_TestCase
     public function providerTransformTestData()
     {
         return array(
-            array(new TableNode(), true),
+            array(new TableNode(array()), true),
             array('test', false),
             array(null, false)
         );

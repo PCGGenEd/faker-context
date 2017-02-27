@@ -79,9 +79,7 @@ class FakerContext implements Context
             $rows[] = $row;
         }
 
-        $tableNode = new TableNode();
-        $tableNode->setRows($rows);
-        return $tableNode;
+        return new TableNode($rows);
     }
 
     /**
